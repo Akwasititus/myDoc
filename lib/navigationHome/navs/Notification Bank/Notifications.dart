@@ -32,7 +32,6 @@ class _NotificationsState extends State<Notifications> {
               });
               Get.to(const NotificationDetail(),
                   arguments: {
-                    
                     'msg': getNotify.msg,
                     'time': getNotify.time,
                     'msgDisc': getNotify.msgDisc,
