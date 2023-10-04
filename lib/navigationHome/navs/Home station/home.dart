@@ -44,6 +44,7 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
+             
             SizedBox(height: size * 0.02),
             Container(
               margin: const EdgeInsets.all(10.0),
@@ -176,18 +177,12 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
-                children: [
-                  const Text('Nearby Doctors', style: AppBlackTextStyle.texth2),
-                  Expanded(child: Container()),
-                  Text('more',
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey.shade700,
-                          fontFamily: 'Ubuntu-Regular')),
+                children: const [
+                  Text('Nearby Doctors', style: AppBlackTextStyle.texth2),
                 ],
               ),
             ),
-            SizedBox(height: size * 0.05),
+            SizedBox(height: size * 0.01),
             SizedBox(
               height: 200,
               child: ListView.builder(
@@ -237,7 +232,96 @@ class _HomeState extends State<Home> {
                                       style: AppWhiteTextStyle.texth2),
                                   Row(
                                     children: [
-                                      Icon(Icons.star,
+                                      const Icon(Icons.star,
+                                          color: Colors.yellow, size: 15),
+                                      SizedBox(width: size * 0.01),
+                                      Text(doctor.rating,
+                                          style: AppWhiteTextStyle.texth2),
+                                      SizedBox(width: size * 0.01),
+                                      Text(doctor.location,
+                                          style: AppWhiteTextStyle.texth2),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(20.2),
+                                  topRight:
+                                      Radius.circular(20.0)), // Image border
+                              child: Image.asset(
+                                doctor.imageURL,
+                                height: 20.5,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ));
+                },
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: const [
+                  Text('Doctors', style: AppBlackTextStyle.texth2),
+                ],
+              ),
+            ),
+
+            SizedBox(
+              height: 200,
+              child: ListView.builder(
+                itemCount: getDrInfo3.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  final doctor = getDrInfo3[index];
+                  return Padding(
+                      padding: const EdgeInsets.all(7.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(Detail(),
+                              arguments: {
+                                //-------------------------------------------------
+                                // these are argument from the model page that are being passed to the detailed screen
+                                //---------------------------------------------------
+
+                                'DoctorName': doctor.drName,
+                                'DoctorType': doctor.drType,
+                                'DoctorDesc': doctor.drDesc,
+                                'DoctorImg': doctor.imageURL,
+                                'DoctorRating': doctor.rating,
+                                'Doctorlocation': doctor.location,
+                              },
+                              duration: const Duration(seconds: 1),
+                              transition: Transition.native);
+                        },
+                        child: Container(
+                          //margin: const EdgeInsets.all(10.0),
+                          height: 200,
+                          width: 200,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFcbe6f6),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: GridTile(
+                            footer: GridTileBar(
+                              backgroundColor: Colors.black54,
+                              title: Text(doctor.drName,
+                                  style: AppWhiteTextStyle.texth1),
+                              subtitle: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(doctor.drType,
+                                      style: AppWhiteTextStyle.texth2),
+                                  Row(
+                                    children: [
+                                      const Icon(Icons.star,
                                           color: Colors.yellow, size: 15),
                                       SizedBox(width: size * 0.01),
                                       Text(doctor.rating,

@@ -18,22 +18,31 @@ class _ChatsState extends State<Chats> {
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+            title: const Text(
+              'Chat Room',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF000000),
+                fontSize: 20,
+              ),
+            ),
+          ),
         body: Column(
-            children: [
-        SizedBox(height: size * 0.05),
+      children: [
+        SizedBox(height: size * 0.03),
         const Text('Chat Room',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.black,
-                          fontFamily: 'Ubuntu-Regular')),
-                          SizedBox(height: size * 0.05),
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w800,
+                color: Colors.black,
+                fontFamily: 'Ubuntu-Regular')),
+        SizedBox(height: size * 0.05),
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
             width: double.infinity,
             height: 50,
-          
             decoration: BoxDecoration(
                 color: Colors.grey.shade100,
                 borderRadius: BorderRadius.circular(10)),
@@ -62,7 +71,7 @@ class _ChatsState extends State<Chats> {
         //-------------------------------------------------------------
         // Search view ends here
         //-------------------------------------------------------------
-        
+
         SizedBox(
           height: 100,
           child: ListView.builder(
@@ -73,30 +82,30 @@ class _ChatsState extends State<Chats> {
               return Padding(
                   padding: const EdgeInsets.all(7.0),
                   child: GestureDetector(
-                       onTap: () {
-                    Get.to(const ChatScreen(),
-                        arguments: {
-                          //-------------------------------------------------
-                          // these are argument from the model page that are being passed to the detailed screen
-                          //---------------------------------------------------
+                      onTap: () {
+                        Get.to(ChatScreen(),
+                            arguments: {
+                              //-------------------------------------------------
+                              // these are argument from the model page that are being passed to the detailed screen
+                              //---------------------------------------------------
 
-                          'DoctorName': doctor.drName,
-                          'DoctorType': doctor.drType,
-                          //'DoctorDesc': doctor.drDesc,
-                          'DoctorImg': doctor.imageURL,
-                          //'DoctorRating': doctor.rating,
-                          //'Doctorlocation': doctor.location,
-                        },
-                        duration: const Duration(seconds: 1),
-                        transition: Transition.native);
-                  },
+                              'DoctorName': doctor.drName,
+                              'DoctorType': doctor.drType,
+                              //'DoctorDesc': doctor.drDesc,
+                              'DoctorImg': doctor.imageURL,
+                              //'DoctorRating': doctor.rating,
+                              //'Doctorlocation': doctor.location,
+                            },
+                            duration: const Duration(seconds: 1),
+                            transition: Transition.native);
+                      },
                       child: ClipOval(
-                    child: Image.asset(
-                      doctor.imageURL,
-                      height: 50.5,
-                      fit: BoxFit.cover,
-                    ),
-                  )));
+                        child: Image.asset(
+                          doctor.imageURL,
+                          height: 50.5,
+                          fit: BoxFit.cover,
+                        ),
+                      )));
             },
           ),
         ),
@@ -114,16 +123,15 @@ class _ChatsState extends State<Chats> {
             ],
           ),
         ),
-        
+
         Expanded(
           child: ListView.builder(
             itemCount: getDrInfo.length,
-            
             itemBuilder: (context, index) {
               final doctor = getDrInfo[index];
               return GestureDetector(
-                 onTap: () {
-                    Get.to(const ChatScreen(),
+                  onTap: () {
+                    Get.to(ChatScreen(),
                         arguments: {
                           //-------------------------------------------------
                           // these are argument from the model page that are being passed to the detailed screen
@@ -139,22 +147,22 @@ class _ChatsState extends State<Chats> {
                         duration: const Duration(seconds: 1),
                         transition: Transition.native);
                   },
-                  child:  ListTile(
-                leading: ClipOval(
-                    child: Image.asset(
-                      doctor.imageURL,
-                      height: 50.5,
-                      fit: BoxFit.cover,
+                  child: ListTile(
+                    leading: ClipOval(
+                      child: Image.asset(
+                        doctor.imageURL,
+                        height: 50.5,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                title: Text(doctor.drName),
-                subtitle: Text(doctor.drType),
-                trailing: const Text('10:48 AM'),
-              ));
+                    title: Text(doctor.drName),
+                    subtitle: Text(doctor.drType),
+                    trailing: const Text('10:48 AM'),
+                  ));
             },
           ),
         )
-            ],
-          ));
+      ],
+    ));
   }
 }

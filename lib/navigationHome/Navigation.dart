@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'navs/Notification Bank/Notifications.dart';
+import 'navs/Support Bank/blood_type.dart';
 import 'navs/Support Bank/support.dart';
 import 'navs/chats/chat.dart';
 import 'navs/Home station/home.dart';
@@ -22,7 +23,7 @@ class _NavigationHomeState extends State<NavigationHome> {
     const Home(),
     const Notifications(),
     const Chats(),
-    const Support()
+    const BloodType()
     
   ];
   @override
@@ -69,8 +70,8 @@ class _NavigationHomeState extends State<NavigationHome> {
             ),
             BottomNavigationBarItem(
               //icon: ImageIcon(AssetImage("images/referral.png")),
-              icon: Icon(Icons.support),
-              label: 'Support',
+              icon: Icon(Icons.people),
+              label: 'Blood Type',
             ),
             
           ],
